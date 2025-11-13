@@ -10,7 +10,8 @@ Ysi el usuario marca el reto como realizado y lo confirma
 Entonces el sistema añade un punto extra en su progreso diario
 
 Ejemplos:
-| Reto sugerido          | Acción del usuario | Resultado esperado              |
-|------------------------|--------------------|---------------------------------|
-| Respirar profundo 3 min| Completa           | +1 punto en progreso diario     |
-| Escribir algo positivo | Completa           | +1 punto en progreso diario     |
+| Reto sugerido          | Acción del usuario | Resultado esperado                |
+|-------------------------|--------------------|-----------------------------------|
+| Respirar profundo 3 min| Completa          | +1 punto en progreso diario      |
+| Escribir algo positivo | Completa          | +1 punto en progreso diario      |
+
