@@ -30,7 +30,9 @@
     <link rel="icon" type="image/webp" sizes="16x16" href="https://emoti-track.netlify.app/assets/images/logo.webp">
     <link rel="apple-touch-icon" sizes="180x180" href="https://emoti-track.netlify.app/assets/images/logo.webp">
 
-    <link rel="stylesheet" href="./styles/global.css">
+    <script src="https://kit.fontawesome.com/2dfaccd984.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 <body>
 
@@ -44,8 +46,8 @@
         <div class="logo" data-animate>
             <img src="./assets/images/logo.webp" alt="Logo EmotiTrack">
             <div>
-                <strong>WellTech</strong><br>
-                <small>Solutions</small>
+                <strong>EmotiTrack</strong><br>
+                <span>WellTech Solutions</span>
             </div>
         </div>
         <ul class="nav-links">
@@ -62,15 +64,13 @@
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Menú">
-            <span></span>
-            <span></span>
-            <span></span>
+            <i class="fa-solid fa-bars-staggered"></i>
         </button>
     </nav>
 
     <div class="mobile-menu">
         <button class="mobile-menu-close" aria-label="Cerrar menú">
-            <span></span>
+            <i class="fa-solid fa-xmark"></i>
         </button>
         <ul>
             <li><a href="#beneficios">Beneficios</a></li>
@@ -429,6 +429,10 @@
     </div>
 </footer>
 
-<script src="./scripts/index.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+<script src="assets/scripts/main.js"></script>
 </body>
 </html>
