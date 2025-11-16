@@ -1,7 +1,7 @@
 const EMAILJS_CONFIG = {
-    publicKey: 'TU_PUBLIC_KEY_AQUI',
-    serviceId: 'TU_SERVICE_ID_AQUI',
-    templateId: 'TU_TEMPLATE_ID_AQUI'
+    publicKey: 'Yja2eZ7ej5V29cDYJ',
+    serviceId: 'service_bkeu5c2',
+    templateId: 'template_ox2zzjd'
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -272,11 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
 
-        if (message.length < 10) {
-            showError(messageInput, 'El mensaje debe tener al menos 10 caracteres');
-            return false;
-        }
-
         if (message.length > 1000) {
             showError(messageInput, 'El mensaje no puede exceder 1000 caracteres');
             return false;
@@ -294,45 +289,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return isNameValid && isEmailValid && isMessageValid;
     }
 
-    async function sendEmail(formData) {
-        const url = 'https://api.emailjs.com/api/v1.0/email/send';
-
-        const payload = {
-            service_id: EMAILJS_CONFIG.serviceId,
-            template_id: EMAILJS_CONFIG.templateId,
-            user_id: EMAILJS_CONFIG.publicKey,
-            template_params: {
-                from_name: formData.name,
-                from_email: formData.email,
-                message: formData.message,
-                to_name: 'EmotiTrack Team',
-                reply_to: formData.email
-            }
-        };
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.text();
-                throw new Error(`Error ${response.status}: ${errorData}`);
-            }
-
-            return await response.text();
-        } catch (error) {
-            console.error('Error al enviar email:', error);
-            throw error;
-        }
-    }
-
     async function handleSubmit(e) {
         e.preventDefault();
+
+        emailjs.init({
+            publicKey: EMAILJS_CONFIG.publicKey,
+        });
 
         removeError(nameInput);
         removeError(emailInput);
@@ -353,20 +315,14 @@ document.addEventListener('DOMContentLoaded', function() {
             message: messageInput.value.trim()
         };
 
-        if (EMAILJS_CONFIG.publicKey === 'TU_PUBLIC_KEY_AQUI' ||
-            EMAILJS_CONFIG.serviceId === 'TU_SERVICE_ID_AQUI' ||
-            EMAILJS_CONFIG.templateId === 'TU_TEMPLATE_ID_AQUI') {
-
-            showMessage('error', 'Error de configuración. Por favor configura EmailJS primero.');
-            console.error('⚠️ EMAILJS NO CONFIGURADO');
-            return;
-        }
-
         setButtonLoading(true);
 
         try {
-            const result = await sendEmail(formData);
-            console.log('✅ Email enviado exitosamente:', result);
+
+            await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+                name: formData.name,
+                email: formData.email,
+            });
 
             showMessage('success', '¡Mensaje enviado con éxito! Te contactaremos pronto.');
 
